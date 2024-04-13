@@ -1,0 +1,39 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - JWT_SECRET=DKFGJFLDFMKGNJTJRFKMDGJBTNRFMKGNJTREFKJ
+      - DB=grid
+      - HOST=db
+      - USERNAME=ali_grid
+      - PASSWORD=gridstd81
+      - PORT=3306
+
+  db:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=ali_grid_81
+      - MYSQL_DATABASE=grid
+      - MYSQL_USER=ali_grid
+      - MYSQL_PASSWORD=gridstd81
+      - MYSQL_TCP_PORT=3306
+    volumes:
+      - mysql:/var/lib/mysql
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+   
+
+volumes:
+    mysql:
+        
