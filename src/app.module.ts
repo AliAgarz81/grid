@@ -19,7 +19,7 @@ import { Content } from './content/content.entity';
       type: 'mysql',
       database: process.env.DB,
       host: process.env.HOST,
-      port: parseInt(process.env.PORT),
+      port: parseInt(process.env.DB_PORT),
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       entities: [User, Content],
