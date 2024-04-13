@@ -6,7 +6,6 @@ import { AuthGuard } from './user.guard';
 import { Request } from 'express';
 
 @Controller('user')
-@ApiTags('users')
 export class UserController {
     constructor(private userService: UserService) {}
 
