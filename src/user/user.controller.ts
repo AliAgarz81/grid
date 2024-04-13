@@ -16,7 +16,7 @@ export class UserController {
         res.cookie('token', response.access_token, {
             httpOnly: true,
             secure: true,
-            sameSite: 'lax'
+            sameSite: 'strict'
         }).send("Login Successfully");
     }
 
@@ -24,7 +24,7 @@ export class UserController {
     @UseGuards(AuthGuard)
     @Post('logout')
     logOut(@Res( { passthrough: true } ) res) {
-        res.cookie('token', '').send('Logout successfully');
+        res.clearCookie('token').send('Logout successfully');
     }
 
     @HttpCode(HttpStatus.CREATED)
@@ -43,7 +43,7 @@ export class UserController {
     @HttpCode(HttpStatus.OK)
     @Get('check')
     checkLogged(@Req() req: Request) {
-        if(req.cookies['token'] !== ''){
+        if(req.cookies['token']){
             return 'Logged'
         } else {
             return 'Not logged'
