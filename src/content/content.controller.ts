@@ -3,7 +3,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ContentDto } from './content.dto';
 import { ContentService } from './content.service';
 import { AuthGuard } from 'src/user/user.guard';
-import { ApiTags } from '@nestjs/swagger';
 
 @Controller('content')
 export class ContentController {
@@ -30,6 +29,12 @@ export class ContentController {
     @HttpCode(HttpStatus.OK) 
     getContent(@Param('id') id) {
         return this.contentServices.get(id);
+    }
+
+    @Put(':id')
+    @HttpCode(HttpStatus.OK) 
+    updateContent(@Param('id') id, @Body() contentDto: ContentDto) {
+        return this.contentServices.update(id, contentDto);
     }
 
     @Delete(':id')

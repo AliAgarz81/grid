@@ -31,7 +31,7 @@ export class ContentService {
         return content;
     }
 
-    async update(id: number ,dto: { title: string, description: string, imgPath:string }) {
+    async update(id: number ,dto: { title: string, description: string }) {
         const content = await this.contentRepo.findOne({ where: { id } });
         if(!content) {
             throw new NotFoundException("Content not found");
